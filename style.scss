@@ -1,0 +1,131 @@
+* {
+
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-family: Arial;
+}
+
+body {
+
+    height: 100vh;
+    background-color: beige;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.wrapper {
+
+    background-color: honeydew;
+    border-radius: 20px;
+    padding: 20px;
+    position: relative;
+    min-height: 250px;
+    display: flex;
+    flex-direction: column;
+
+    &::after {
+
+        content: '';
+        width: 100%;
+        height: 2px;
+        background-color: black;
+        position: absolute;
+        top: 85px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    &__main-title {
+
+        font-size: 45px;
+        margin-bottom: 30px;
+    }
+
+    &__input-container {
+
+        display: flex;
+        justify-content: space-between;
+        background-color: white;
+        border: 2px solid beige;
+        margin-bottom: 20px;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    &__input {
+
+        border: none;
+        padding: 5px;
+        outline: none;
+    }
+
+    &__button {
+
+        border: 0;
+        padding-inline: 10px;
+        font-size: 15px;
+        background-color: palegreen;
+    }
+
+    &__list {
+
+        display: flex;
+        flex-direction: column;
+        align-items: baseline;
+        text-align: left;
+        margin-left: 15px;
+        gap: 7px;
+    }
+
+    &__list-item {
+
+        position: relative;
+
+        // &::marker {
+
+        //     color: beige;
+        //     font-size: 1.5rem;
+        // }
+
+        &::before, &::after {
+
+            content: '';
+            width: 1px;
+            height: 15px;
+            background-color: red;
+
+            position: absolute;
+            left: -20px;
+            top: 50%;
+            transform: translateY(-50%) rotate(45deg);
+        }
+
+        &::after {
+
+            transform: translateY(-50%) rotate(-45deg);
+        }
+    }
+
+    &__item-text {
+
+        font-size: 23px;
+        margin: 0;
+    }
+
+    &__item-button {
+
+        position: absolute;
+        cursor: pointer;
+        left: -29.5px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 19px;
+        height: 19px;
+        // background-color: rgba(0, 0, 0, 0.7);
+        background-color: transparent;
+        border: none;
+        border-radius: 50%;
+    }
+}
