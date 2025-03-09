@@ -46,13 +46,14 @@ body {
 
     &__input-container {
 
-        display: flex;
-        justify-content: space-between;
+        display: grid;
+        grid-template-columns: 1fr auto;
         background-color: white;
         border: 2px solid beige;
         margin-bottom: 20px;
         border-radius: 8px;
         overflow: hidden;
+        width: 100%;
     }
 
     &__input {
@@ -119,6 +120,7 @@ body {
             width: 80%;
             height: 80%;
             transition: all ease-in-out 0.3s;
+            opacity: 0;
         }
 
         &._completed {
@@ -128,8 +130,18 @@ body {
             &::after {
 
                 transform: translate(-50%, -50%);
+                opacity: 1;
             }
         } 
+
+        &._anim {
+
+            &::after {
+
+                transform: translate(-50%, -50%) translateY(15px);
+                opacity: 0;
+            }
+        }
     }
 
     
@@ -138,6 +150,40 @@ body {
         font-size: 23px;
         margin: 0;
         max-width: 420px;
+        position: relative;
+
+        // &::after {
+
+        //     content: '';
+        //     position: absolute;
+        //     top: 50%;
+        //     left: 0;
+        //     transform: translateY(-50%) scaleX(0);
+        //     width: 100%;
+        //     height: 2px;
+        //     background-color: black;
+        //     transition: all linear 0.3s;
+        //     transform-origin: left;
+        // }
+
+        &._completed {
+
+        //     &::after {
+
+        //         transform: translateY(-50%) scaleX(1);
+        //     }
+
+            text-decoration: line-through;
+        }
+
+        // &._anim {
+
+        //     &::after {
+
+        //         transform-origin: right;
+        //         transform: translateY(-50%) scaleX(0);
+        //     }
+        // }
     }
 
     &__item-button {

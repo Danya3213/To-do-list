@@ -38,13 +38,14 @@ body {
   text-align: center;
 }
 .wrapper__input-container {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr auto;
   background-color: white;
   border: 2px solid beige;
   margin-bottom: 20px;
   border-radius: 8px;
   overflow: hidden;
+  width: 100%;
 }
 .wrapper__input {
   border: none;
@@ -98,17 +99,27 @@ body {
   width: 80%;
   height: 80%;
   transition: all ease-in-out 0.3s;
+  opacity: 0;
 }
 .wrapper__item-mark._completed {
   background-color: greenyellow;
 }
 .wrapper__item-mark._completed::after {
   transform: translate(-50%, -50%);
+  opacity: 1;
+}
+.wrapper__item-mark._anim::after {
+  transform: translate(-50%, -50%) translateY(15px);
+  opacity: 0;
 }
 .wrapper__item-text {
   font-size: 23px;
   margin: 0;
   max-width: 420px;
+  position: relative;
+}
+.wrapper__item-text._completed {
+  text-decoration: line-through;
 }
 .wrapper__item-button {
   position: relative;
