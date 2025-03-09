@@ -4,55 +4,40 @@ document.addEventListener('DOMContentLoaded', () => {
     const confirmBtn = document.querySelector('#confirmButtonTask');
     let list = document.querySelector('#taskList');
     let listItems = list.children;
-    let deleteBtn = document.querySelectorAll('#deleteButton');
-
+    let deleteButtons = document.querySelectorAll('#deleteButton');
+    let completeButtons = document.querySelectorAll('#completedMark');
     input.value = '';
 
     const deleteBtns = () => {
 
-        // deleteBtn.forEach((button, index) => {
+        const deleteButton = () => {
 
-        //     let addEvent = null;
+            const button = event.target;
+            listFunctions.deleteTask(button);
+        }
 
-        //     addEvent = () => {
+        deleteButtons = document.querySelectorAll('#deleteButton');
 
-        //         button.addEventListener('click', () => {
+        deleteButtons.forEach((button) => {
 
-        //             console.log('deleteTask ' + index);  
-        //             listFunctions.deleteTask(index);
-        //         });
-        //     }
-
-        //     addEvent();
-        // });
-
-        // deleteBtn.forEach((button, index) => {
-
-        //     deleteHandler = () => {
-
-        //         console.log('deleteTask ' + index);
-        //         listFunctions.deleteTask(index);
-        //     }
-
-        //     button.removeEventListener('click', deleteHandler);
-
-        //     button.addEventListener('click', deleteHandler);
-        // });
-
-        const deleteButtons = document.querySelectorAll('#deleteButton');
-
-        deleteButtons.forEach((button, index) => {
-
-            const newButton = button.cloneNode(true);
-
-            button.replaceWith(newButton);
-
-            newButton.addEventListener('click', () => {
-                
-                console.log('deleteTask ' + index);
-                listFunctions.deleteTask(index);
-            });
+            button.addEventListener('click', deleteButton);
         });
+    };
+
+    const completeTasks = () => {
+
+        completeButtons = document.querySelectorAll('#completedMark');
+
+        const addTask = () => {
+
+            const button = event.target
+            listFunctions.completeTask(button);
+        }
+
+        completeButtons.forEach(button => {
+
+            button.addEventListener('click', addTask);
+        })
     };
 
     const listFunctions = {
@@ -65,33 +50,44 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
     
                 list.innerHTML +=  `<li class="wrapper__list-item">
-                                        <p class="wrapper__item-text">${input.value}</p>
+                                        <div class="wrapper__item-column">
+                                            <div class="wrapper__item-mark" id="completedMark">
+                                            </div>
+                                            <p class="wrapper__item-text">${input.value}</p>
+                                        </div>
                                         <button class="wrapper__item-button" id="deleteButton"></button>
                                     </li>`
             }
             
             input.value = '';
-            deleteBtns();
+            listFunctions.changesDOM();
         },
     
-        deleteTask: (index) => {        
+        deleteTask: (button) => {        
             
-            list.removeChild(listItems[index]);
-            deleteBtns();
+            button.parentElement.remove();
+            listFunctions.changesDOM();
+        },
+
+        completeTask: (marker) => {
+
+            marker.classList.toggle('_completed');
         },
 
         changesDOM: () => {
 
-            deleteBtn = document.querySelectorAll('#deleteButton');
+            deleteButtons = document.querySelectorAll('#deleteButton');
+            completeButtons = document.querySelectorAll('#completedMark');
             list = document.querySelector('#taskList');
             listItems = list.children;
+            deleteBtns();
+            completeTasks();
         }
     };
 
     confirmBtn.addEventListener('click', () => {
 
         listFunctions.addTask();
-        listFunctions.changesDOM();
     });
 
     input.addEventListener('keydown', (event) => {
@@ -99,7 +95,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (event.key === 'Enter') {
             
             listFunctions.addTask();
-            listFunctions.changesDOM();
         }
     });
 });

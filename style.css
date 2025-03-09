@@ -35,6 +35,7 @@ body {
 .wrapper__main-title {
   font-size: 45px;
   margin-bottom: 30px;
+  text-align: center;
 }
 .wrapper__input-container {
   display: flex;
@@ -60,39 +61,74 @@ body {
   display: flex;
   flex-direction: column;
   align-items: baseline;
-  text-align: left;
-  margin-left: 15px;
   gap: 7px;
 }
 .wrapper__list-item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.wrapper__item-column {
   position: relative;
+  left: -18px;
+  display: flex;
+  gap: 9px;
 }
-.wrapper__list-item::before, .wrapper__list-item::after {
+.wrapper__item-mark {
+  position: relative;
+  top: 3px;
+  border-radius: 50%;
+  background-color: honeydew;
+  border: 1px solid gray;
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  overflow: hidden;
+  transition: all ease-in-out 0.3s;
+}
+.wrapper__item-mark::after {
   content: "";
-  width: 1px;
-  height: 15px;
-  background-color: red;
   position: absolute;
-  left: -20px;
+  transform: translate(-50%, -50%) translateY(-15px);
   top: 50%;
-  transform: translateY(-50%) rotate(45deg);
+  left: 50%;
+  background-image: url(./img/completed.svg);
+  background-size: cover;
+  width: 80%;
+  height: 80%;
+  transition: all ease-in-out 0.3s;
 }
-.wrapper__list-item::after {
-  transform: translateY(-50%) rotate(-45deg);
+.wrapper__item-mark._completed {
+  background-color: greenyellow;
+}
+.wrapper__item-mark._completed::after {
+  transform: translate(-50%, -50%);
 }
 .wrapper__item-text {
   font-size: 23px;
   margin: 0;
+  max-width: 420px;
 }
 .wrapper__item-button {
-  position: absolute;
+  position: relative;
+  top: 4px;
   cursor: pointer;
-  left: -29.5px;
-  top: 50%;
-  transform: translateY(-50%);
   width: 19px;
   height: 19px;
   background-color: transparent;
   border: none;
   border-radius: 50%;
+}
+.wrapper__item-button::before, .wrapper__item-button::after {
+  content: "";
+  width: 1px;
+  height: 15px;
+  background-color: red;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%) rotate(45deg);
+}
+.wrapper__item-button::after {
+  transform: translateY(-50%) rotate(-45deg);
 }/*# sourceMappingURL=style.css.map */

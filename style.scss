@@ -41,6 +41,7 @@ body {
 
         font-size: 45px;
         margin-bottom: 30px;
+        text-align: center;
     }
 
     &__input-container {
@@ -74,20 +75,81 @@ body {
         display: flex;
         flex-direction: column;
         align-items: baseline;
-        text-align: left;
-        margin-left: 15px;
         gap: 7px;
     }
 
     &__list-item {
 
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    &__item-column {
+
         position: relative;
+        left: -18px;
+        display: flex;
+        gap: 9px;
+    }
 
-        // &::marker {
+    &__item-mark {
 
-        //     color: beige;
-        //     font-size: 1.5rem;
-        // }
+        position: relative;
+        top: 3px;
+        border-radius: 50%;
+        background-color: honeydew;
+        border: 1px solid gray;
+        cursor: pointer;
+        width: 20px;
+        height: 20px;
+        overflow: hidden;
+        transition: all ease-in-out 0.3s;
+
+        &::after {
+
+            content: '';
+            position: absolute;
+            transform: translate(-50%, -50%) translateY(-15px);
+            top: 50%;
+            left: 50%;
+            background-image: url(./img/completed.svg);
+            background-size: cover;
+            width: 80%;
+            height: 80%;
+            transition: all ease-in-out 0.3s;
+        }
+
+        &._completed {
+
+            background-color: greenyellow;
+
+            &::after {
+
+                transform: translate(-50%, -50%);
+            }
+        } 
+    }
+
+    
+    &__item-text {
+
+        font-size: 23px;
+        margin: 0;
+        max-width: 420px;
+    }
+
+    &__item-button {
+
+        position: relative;
+        top: 4px;
+        cursor: pointer;
+        width: 19px;
+        height: 19px;
+        background-color: transparent;
+        border: none;
+        border-radius: 50%;
 
         &::before, &::after {
 
@@ -97,7 +159,6 @@ body {
             background-color: red;
 
             position: absolute;
-            left: -20px;
             top: 50%;
             transform: translateY(-50%) rotate(45deg);
         }
@@ -108,24 +169,4 @@ body {
         }
     }
 
-    &__item-text {
-
-        font-size: 23px;
-        margin: 0;
-    }
-
-    &__item-button {
-
-        position: absolute;
-        cursor: pointer;
-        left: -29.5px;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 19px;
-        height: 19px;
-        // background-color: rgba(0, 0, 0, 0.7);
-        background-color: transparent;
-        border: none;
-        border-radius: 50%;
-    }
 }
