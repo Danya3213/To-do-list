@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                             <p class="wrapper__item-text" id="taskText">${input.value}</p>
                                         </div>
                                         <button class="wrapper__item-button" id="deleteButton"></button>
-                                    </li>`
+                                    </li>`;
             };
             
             input.value = '';
@@ -72,12 +72,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         completeTask: (marker) => {
 
-
             if (marker.classList.contains('_completed')) {
 
                 marker.classList.replace('_completed', '_anim');
                 marker.nextElementSibling.classList.replace('_completed', '_anim');
-                
+
                 setTimeout(() => {
 
                     marker.classList.remove('_anim');
